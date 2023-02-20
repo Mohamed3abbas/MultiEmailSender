@@ -1,0 +1,56 @@
+﻿@model SubjectCreateModel
+
+<h1>Create Email's Subjectes And Messages</h1>
+
+<div class="alert alert-success" role="alert" style="display:none;" id="Message">
+    <h4 class="alert-heading">Well done!</h4>
+    <p> you successfully Added Subjectes and Messages </p>
+    <hr>
+    <p class="mb-0"> <a asp-controller="EmailSender" asp-action="Index">For More Details Press</a>.</p>
+</div>
+
+<form data-ajax="true" data-ajax-loading="#loader" data-ajax-complete="EmailAdd" method="post" asp-controller="EmailSender" asp-action="Create" enctype="multipart/form-data">
+    <div class="field-validation-error" asp-validation-summary="ModelOnly"></div>
+
+    <div class="form-group">
+        <label asp-for="Subject"></label>
+        <input class="form-control" asp-for="Subject" />
+        @*<span asp-validation-for="Subject" class="field-validation-error"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Message"></label>
+        <input class="form-control" asp-for="Message" />
+        @*<span asp-validation-for="Message" class="field-validation-error"></span>*@
+    </div>
+
+
+
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+    <img id="loader" src="~/Content/Image/loader.gif" style="display:None" />
+
+    <div class="form-group">
+
+        <label asp-for="Subject"></label>
+        <select asp-for="Subject" class="form-control js-example-basic-single" asp-items="ViewBag.Subjects" id="subject-select">
+        </select>
+        @*<span asp-validation-for="Subject" class="validation"></span>*@
+    </div>
+
+</form>
+<script>
+
+    function EmailAdd(data) {
+        document.getElementById("Message")
+            .style.display = "block";
+    }
+
+    document.getElementById("subject-select").addEventListener("change", function () {
+        var subject = this.value;
+        window.location.href = "@Url.Action("SendingEmails", "EmailSender")?subject=" + subject;
+    });
+
+
+
+</script>

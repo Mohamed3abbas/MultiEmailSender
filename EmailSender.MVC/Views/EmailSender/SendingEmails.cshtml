@@ -1,0 +1,29 @@
+﻿@model SendingEmailsCreatModel
+
+<h1>Create Email Message</h1>
+
+<div class="alert alert-success" role="alert" style="display:none;" id="Message">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>You have successfully sent the email.</p>
+    <hr>
+</div>
+
+<form data-ajax="true" data-ajax-loading="#loader" data-ajax-complete="EmailAdd" method="post" asp-controller="EmailSender" asp-action="SendingEmails">
+    <div class="field-validation-error" asp-validation-summary="ModelOnly"></div>
+
+    <input type="hidden" name="subject" value="@ViewBag.Subject" />
+
+    <div class="form-group">
+        <label asp-for="Recipients"></label>
+        <input class="form-control" asp-for="Recipients" placeholder="Enter comma-separated email addresses for Ex: mohamed@yahoo.com,ahmed@gmail.com" />
+        <span asp-validation-for="Recipients" class="field-validation-error"></span>
+    </div>
+
+    <input type="submit" value="Send" class="btn btn-primary" />
+</form>
+
+<script>
+    function EmailAdd(data) {
+        document.getElementById("Message").style.display = "block";
+    }
+</script>
