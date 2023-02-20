@@ -15,13 +15,12 @@
     <div class="form-group">
         <label asp-for="Subject"></label>
         <input class="form-control" asp-for="Subject" />
-        @*<span asp-validation-for="Subject" class="field-validation-error"></span>*@
     </div>
 
+    <br>
     <div class="form-group">
         <label asp-for="Message"></label>
-        <input class="form-control" asp-for="Message" />
-        @*<span asp-validation-for="Message" class="field-validation-error"></span>*@
+        <textarea class="form-control" asp-for="Message"></textarea>
     </div>
 
 
@@ -32,10 +31,9 @@
 
     <div class="form-group">
 
-        <label asp-for="Subject"></label>
+        <span>Select <label asp-for="Subject"></label>  From Here To Send For Multi User</span>
         <select asp-for="Subject" class="form-control js-example-basic-single" asp-items="ViewBag.Subjects" id="subject-select">
         </select>
-        @*<span asp-validation-for="Subject" class="validation"></span>*@
     </div>
 
 </form>
